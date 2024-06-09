@@ -1,6 +1,7 @@
 import urwid
 import typing
 import urwid
+import pyttsx3
 from collections.abc import Iterable
 
 # ------ TUI Components ------
@@ -57,8 +58,13 @@ def game_screen() -> urwid.ListBox:
 
 # ------ Callbacks ------
 
+def speak(text: str) -> None:
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
 
 def start_game(button: urwid.Button) -> None:
+    speak("Start the game!")
     main.original_widget = game_screen()
 
 
