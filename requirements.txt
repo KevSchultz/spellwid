@@ -1,0 +1,3 @@
+typing_extensions==4.12.1
+urwid==2.6.12
+wcwidth==0.2.13
