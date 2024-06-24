@@ -2,3 +2,13 @@ pyttsx3==2.90
 typing_extensions==4.12.1
 urwid==2.6.12
 wcwidth==0.2.13
+## The following requirements were added by pip freeze:
+click==8.1.7
+colorama==0.4.6
+comtypes==1.4.4
+joblib==1.4.2
+nltk==3.8.1
+pypiwin32==223
+pywin32==306
+regex==2024.5.15
+tqdm==4.66.4
