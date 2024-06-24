@@ -30,6 +30,28 @@ def game_menu() -> urwid.ListBox:
     return urwid.ListBox(urwid.SimpleFocusListWalker(body))
 
 
+class SpeakEdit(urwid.Edit):
+    def keypress(self, size, key):
+        if key == "enter":
+            speak(self.get_edit_text())
+        else:
+            super().keypress(size, key)
+
+
+def text_box() -> SpeakEdit:
+    return urwid.LineBox(
+        SpeakEdit(align="center"),
+        tlcorner="<",
+        trcorner=">",
+        blcorner="<",
+        brcorner=">",
+        tline="-",
+        lline="|",
+        rline="|",
+        bline="-",
+    )
+
+
 def text_box() -> urwid.Edit:
     return urwid.LineBox(
     urwid.Edit(align="center"),
@@ -72,6 +94,12 @@ def exit_program(button: urwid.Button) -> None:
     raise urwid.ExitMainLoop()
 
 
+def exit_on_q(key: str) -> None:
+    if key in {"q", "Q"}:
+        exit_program(None)
+
+# ------ Main ------
+
 main = urwid.Padding(game_menu(), left=2, right=2)
 
 top = urwid.Overlay(
@@ -93,4 +121,4 @@ palette = [
 ]
 
 if __name__ == "__main__":
-    urwid.MainLoop(top, palette=palette).run()
+    urwid.MainLoop(top, palette=palette, unhandled_input=exit_on_q).run()
